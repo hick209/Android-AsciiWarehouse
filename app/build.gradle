@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion 24
+	buildToolsVersion '24.0.0'
+
+	defaultConfig {
+		applicationId 'info.nivaldobondanca.asciiwarehouse'
+		minSdkVersion 21
+		targetSdkVersion 24
+		versionCode 1
+		versionName '1.0.0'
+	}
+
+	dataBinding {
+		enabled = true
+	}
+
+	buildTypes {
+		debug {
+			applicationIdSuffix '.debug'
+			versionNameSuffix '-debug'
+		}
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+
+	// Android support libs
+	def supportLibVersion = '24.0.0'
+	compile "com.android.support:appcompat-v7:$supportLibVersion"
+	compile "com.android.support:design:$supportLibVersion"
+
+	// Rx!
+	compile 'io.reactivex:rxjava:1.1.5'
+	compile 'io.reactivex:rxjava-debug:1.0.3'
+	compile 'io.reactivex:rxandroid:1.2.0'
+
+	// Retrofit -> For API requests
+	def retrofitVersion = '2.1.0'
+	compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+	compile "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+	compile "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+
+	// RxCache for caching
+	compile 'com.github.VictorAlbertos.RxCache:core:1.5.5'
+	compile 'com.github.VictorAlbertos.Jolyglot:gson:0.0.2'
+
+	// Testing
+	testCompile 'junit:junit:4.12'
+	testCompile 'org.json:json:20160212'
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable name="viewModel" type="info.nivaldobondanca.asciiwarehouse.store.viewmodel.AsciiViewModel"/>
+	</data>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:minHeight="168dp"
+		android:orientation="vertical"
+		android:gravity="bottom">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="16dp"
+			android:gravity="center"
+			android:text="@{viewModel.face}"
+			android:textSize="@{viewModel.size}"
+			tools:text="( ⚆ _ ⚆ )"
+			tools:textSize="28sp"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_margin="8dp"
+			android:text="@{viewModel.price}"
+			android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+			tools:text="$9.59"/>
+
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/warehouse_buy"
+				android:padding="24dp"
+				android:onClick="@{viewModel.clickListener}"
+				app:enabled="@{viewModel.buyEnabled}"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="bottom|center_horizontal"
+				android:gravity="center"
+				android:padding="8dp"
+				android:elevation="8dp"
+				android:text="@string/warehouse_lastItem"
+				android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+				android:visibility="@{viewModel.lastItemVisibility}"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:padding="8dp"
+				android:elevation="8dp"
+				android:rotation="-10"
+				android:text="@string/warehouse_soldOut"
+				android:textSize="22sp"
+				android:textStyle="bold"
+				android:textColor="?android:attr/colorAccent"
+				android:textAppearance="@style/TextAppearance.AppCompat.Button"
+				android:visibility="@{viewModel.soldOutVisibility}"/>
+		</FrameLayout>
+	</LinearLayout>
+
+</layout>

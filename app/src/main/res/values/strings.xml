@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">Discount Ascii Warehouse</string>
+
+	<string name="warehouse_hint_search">Search</string>
+
+	<string name="warehouse_menu_search">Search</string>
+	<string name="warehouse_menu_onlyInStock">Only show items currently in-stock</string>
+	<string name="warehouse_menu_onlyInStock_condensed">Only in stock</string>
+
+	<string name="warehouse_loading">Loading…</string>
+	<string name="warehouse_empty_title">No Ascii found</string>
+	<string name="warehouse_empty_message">Check your connection or try different search keywords</string>
+
+	<string name="warehouse_buy">Buy now!</string>
+	<string name="warehouse_lastItem">(Only 1 more in stock)</string>
+	<string name="warehouse_soldOut">Sold out</string>
+
+</resources>
