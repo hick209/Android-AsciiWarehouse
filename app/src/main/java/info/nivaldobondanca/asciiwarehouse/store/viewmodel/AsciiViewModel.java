@@ -87,7 +87,7 @@ public class AsciiViewModel extends BaseObservable {
 					final ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 					clipboard.setPrimaryClip(ClipData.newPlainText("ascii face", item.face()));
 
-					Toast.makeText(context, context.getString(R.string.warehouse_asciiBought, item.face()), Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, R.string.warehouse_asciiBought, Toast.LENGTH_SHORT).show();
 				}
 			}
 		};
