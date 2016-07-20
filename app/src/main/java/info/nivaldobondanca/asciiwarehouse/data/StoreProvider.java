@@ -3,14 +3,16 @@ package info.nivaldobondanca.asciiwarehouse.data;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
+
+import org.json.JSONException;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import info.nivaldobondanca.asciiwarehouse.model.AsciiItem;
 import info.nivaldobondanca.asciiwarehouse.model.StoreResponse;
+import info.nivaldobondanca.asciiwarehouse.util.NdJsonParser;
 import info.nivaldobondanca.asciiwarehouse.util.Objects;
 import io.rx_cache.DynamicKeyGroup;
 import io.rx_cache.internal.RxCache;
@@ -85,22 +87,25 @@ public class StoreProvider {
 		responseMapper = new Func1<String, List<AsciiItem>>() {
 			@Override
 			public List<AsciiItem> call(String response) {
-				final List<AsciiItem> list = new ArrayList<>(pageCount);
-
-				final String[] lines = response.split("\\r?\\n");
-				for (String line : lines) {
-					if (TextUtils.isEmpty(line)) break;
-
-					final AsciiItem item = AsciiItem.create(line);
-					if (item != null) {
-						list.add(item);
-					} else {
-						throw new RuntimeException("Failed to parse JSON response. Response = " + line);
-					}
+				try {
+					return parseAsciiItems(response).toList();
+				}
+				catch (JSONException e) {
+					e.printStackTrace();
 				}
 
-				return list;
+				return Collections.emptyList();
 			}
 		};
+	}
+
+	private static NdJsonParser<AsciiItem> parseAsciiItems(String ndJsonString) throws JSONException {
+		return NdJsonParser.parseString(ndJsonString)
+				.map(new Func1<String, AsciiItem>() {
+					@Override
+					public AsciiItem call(String s) {
+						return AsciiItem.create(s);
+					}
+				});
 	}
 }
