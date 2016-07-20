@@ -1,5 +1,8 @@
 package info.nivaldobondanca.asciiwarehouse.store.viewmodel;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.support.annotation.Nullable;
@@ -7,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import info.nivaldobondanca.asciiwarehouse.BR;
+import info.nivaldobondanca.asciiwarehouse.R;
 import info.nivaldobondanca.asciiwarehouse.model.AsciiItem;
 import info.nivaldobondanca.asciiwarehouse.util.FormatUtils;
 
@@ -79,7 +83,11 @@ public class AsciiViewModel extends BaseObservable {
 			@Override
 			public void onClick(View view) {
 				if (item != null) {
-					Toast.makeText(view.getContext(), item.face(), Toast.LENGTH_SHORT).show();
+					final Context context = view.getContext();
+					final ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+					clipboard.setPrimaryClip(ClipData.newPlainText("ascii face", item.face()));
+
+					Toast.makeText(context, context.getString(R.string.warehouse_asciiBought, item.face()), Toast.LENGTH_SHORT).show();
 				}
 			}
 		};

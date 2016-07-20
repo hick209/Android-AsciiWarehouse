@@ -17,4 +17,6 @@
 	<string name="warehouse_lastItem">(Only 1 more in stock)</string>
 	<string name="warehouse_soldOut">Sold out</string>
 
+	<string name="warehouse_asciiBought">%s\nCopied to clipboard</string>
+
 </resources>
